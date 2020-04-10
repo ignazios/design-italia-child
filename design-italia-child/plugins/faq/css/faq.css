@@ -1,0 +1,43 @@
+h3.faq-term-title { margin: 20px 0 10px }
+p.faq-term-description { font-style: italic; }
+.faq-wrap {
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    background:	none repeat scroll 0 0 #fbfbfb;
+    clear: both;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+.faq-title {
+    background: url(../../images/toggle-open.png) no-repeat left transparent;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 0 0 30px;
+    position: relative;
+}
+.faq-title.faq-open { background: url(../../images/toggle-close.png) no-repeat left transparent; }
+.faq-content {
+    margin-left: 10px;
+    padding: 5px 20px;
+}
+.faq-content p {
+    padding: 0 !important;
+}
+.faq-content p:last-child {
+    margin: 0 !important;
+}
+.faq-to-top {}
+.faq-accordion-title.ui-state-default {
+    background: #fbfbfb;
+}
+.faq-accordion-content {
+    padding: 5px 15px 5px 10px;
+}
+.faq-accordion-content p {
+    padding: 0 !important;
+}
+.faq-accordion-content p:last-child {
+    margin: 0 !important;
+}

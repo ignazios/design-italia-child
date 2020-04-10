@@ -1,0 +1,32 @@
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; padding-bottom: 1em;font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em;margin-top:5px; }
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+#loading-animation{display:none;}
+.RighePannello{
+	margin: 5px 0 5px 10px;
+}
+.RighePannello label span, .welcome-panel-content label span, .welcome-panel-content label label span{
+	font-weight: bold;
+    float: left;
+    width: 10%;
+    text-align: right;
+    margin: 8px 1% 0;
+    line-height: 1.1;
+}
+p.Note{
+	font-style: italic;
+    margin-left: 13%;
+    text-align: left;
+    line-height: 1.1;
+}
+.colsx{
+	float:left;
+	width:20%;
+}
+.coldx{
+	float:left;
+	width:80%;
+}

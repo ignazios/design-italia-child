@@ -1,0 +1,461 @@
+/*
+Theme Name: Design Italia child
+Theme URI: https://github.com/italia/design-wordpress-theme/
+Template: design-italia
+Author: Scimone Ignazio
+Author URI: https://eduva.org/
+Description: Design Italia è un tema di WordPress utilizzabile per i siti internet della Pubblica Amministrazione italiana.
+Version: 0.01
+License: AGPL-3.0
+License URI: LICENSE
+Tags: one-column, two-columns, right-sidebar, custom-header, custom-colors, custom-logo, custom-menu, footer-widgets, editor-style, featured-images, post-formats, theme-options
+Text Domain: wppa
+*/
+#content .link-list li {
+    padding-left: 0!important;
+    list-style: none!important;
+    list-style-position: outside!important;
+}
+#content ul, #content ul li {
+	padding-left: 1em!important;
+	list-style: disc!important;
+	list-style-position: inside!important;
+}
+.h-48 {
+	height: 48%!important;
+}
+#header-superiore{
+	background-color:#000!important;
+}
+#content {
+	padding-bottom: 0!important;
+}
+#PagineAlboOnLine{
+	margin-top: 0;
+	margin-left: 2em;
+	display: inline;
+}
+.icona_piccola{
+    float: right;
+    margin-top: 15px;
+    display: none;
+} 
+
+@media screen and (max-width: 767px){
+	#show-menu-main[type="checkbox"]:checked ~ .nav li {
+		box-shadow: 0 0 0 0 rgba(102, 102, 102, .4)!important;
+	}
+	.it-nav-wrapper.sticky .show-menu-main {
+		top: 5px!important;
+		
+	}
+	.it-nav-wrapper .show-menu-main {
+		top: -115px!important;
+	}
+	.show-menu-lingua, .show-menu-main {
+		display: block;
+	}
+}
+@media screen and (max-width: 426px){
+	.it-nav-wrapper.sticky .show-menu-main {
+		top: 7px!important;
+		left: -75px!important;
+	}
+	.it-nav-wrapper .show-menu-main {
+		top: -105px!important;
+	}
+}
+.sticky {
+  position: fixed!important;
+  top: 0;
+  width: 100%;
+  display: block;
+  z-index: 1000;
+/*  margin-top: 25px;*/
+}
+
+.it-header-center-wrapper {
+	margin-top: 15px;
+}
+
+.etichetta_filtri{
+	text-align: right;
+	vertical-align: -webkit-baseline-middle;
+}
+.entry-summary .mycallout, .mycallout {
+    max-width: 100%!important;
+    padding: 1rem 1rem!important;
+    font-size: 0.8rem!important;
+ }
+.mycallout .callout-title{
+	font-size: 0.8rem!important;
+	margin-left: 1.22rem;
+}
+
+	.sticky .icona_piccola{
+		display: inline-block;
+	}
+	.sticky .it-header-center-wrapper{
+		display: none;
+	}
+/*	.sticky .it-header-navbar-wrapper{
+		margin-top: 15px!important;
+	}
+*/	.stickycontainer {
+	  padding-top: 75px;
+	}
+	.it-header-center-wrapper {
+		height: 150px!important;
+	}
+	.sticky .it-header-center-wrapper {
+		height: 100px!important;
+		padding-top: 35px;
+	}
+	.card.card-bg, .card.card-img {
+		margin: 10px!important;
+	}
+	.icona_piccola{
+		display: none;
+	}
+
+.owl-next{
+	position: absolute;
+    right: 40%;
+}
+.owl-prev{
+	position: absolute;
+    left: 40%;
+}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+	font-weight: bold!important;
+    font-size: 2em!important;
+    margin-top: -30px;
+	border: 2px solid red;
+  	border-radius: 5px;
+}
+.card-space{
+	/*height:340px;*/
+}
+.card-title-fix{
+/*	height: 7rem;*/
+	height: 6rem;
+	overflow: hidden;
+}
+.card .it-card-footer {
+   justify-content: flex-end!important;
+   margin-top: 5px!important;
+   margin-bottom:5px!important;
+   padding-top: 5px;
+}
+.BloccoScuola{
+	height: 31em;
+	overflow: hidden;
+}
+.Titolo{
+	font-size: 1.2em!important;
+}
+.text-muted{
+	font-size: 0.8em!important;
+}
+.text-content{
+	font-size: 0.9em!important;
+	font-weight: bolder;
+}
+.it-list:before {
+	content:none!important;
+}
+.Tassonomie{
+	font-size: 0.8em;
+}
+.it-list-wrapper .it-list a .it-right-zone span.it-multiple span.metadata {
+	font-size:1.2em;
+}
+.icona-comunicazione{
+	margin:auto;
+	text-align:center;
+	color:#0066cc;
+}
+#Comunicazioni h2{
+	padding:0.5em;
+}
+#Comunicazioni p{
+	padding-bottom:0.1em;
+	margin-bottom: 0.1em;
+}
+
+#Ufficio_Stampa,#Comunicazioni{
+	padding: 30px 0; 
+}
+.ButtonUF{
+	color:#FFF!important;
+	background:#06c!important;
+}
+.testo-bianco, .testo-bianco a{
+	color:#FFF!important;
+}
+
+.it-footer-main .it-brand-wrapper {
+	padding: 12px 0!important;
+/*	background-color: #19191a;*/
+}
+.it-footer-main .it-brand-wrapper li a {
+	text-decoration: underline!important;
+}
+.link_footer{
+	text-decoration: none!important;
+	padding-right: 0.5rem;
+}
+
+.mega-menu .sub-menu > li li,.mega-menu .sub-menu > li {
+	padding: 0!important;
+	margin-left: 1em;
+}
+#footer #Ente .nav{
+	display: inline!important;
+}
+#footer #Ente .nav li{
+	padding: 0!important;
+	margin: 0!important;
+}
+#footer #Ente .nav li a, .copyright a{ 
+	color: #65dde0!important;
+}
+#footer #Ente .nav li a:hover, .copyright a{
+	text-decoration: underline!important;
+}
+.it-brand-text h4, .it-brand-text{
+	display: inline;
+}
+#footer #Ente h3{
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #9fa8af;
+}
+
+.link-list-wrapper ul li a.subele {
+	line-height: 1.2em; 
+}
+.border-dashed{
+	border: 1px dashed #b1b1b3!important;
+}
+article .attachments h3{
+	padding-top: 16px!important;
+	padding-bottom: 8px!important;
+	font-size: 1.2rem;
+}
+@media screen and (min-width: 990px){
+	#Localita, #Eventi{
+		height: 200px;
+		overflow-y: auto;
+	}
+	#ContenitoreCalendario{
+		height: 300px;
+	}
+}
+@media screen and (max-width: 375px){
+	.show-menu-main {
+		left: -65px!important;
+	}
+/*	.sticky .it-header-navbar-wrapper, #myHeader{
+		padding-top: 15px !important;
+	}
+*/}
+@media screen and (min-width: 375px) and (max-width: 549px){
+	.show-menu-main {
+		left: -85px!important;
+	}
+}
+@media screen and (min-width: 550px) and (max-width: 768px){
+	.show-menu-main {
+		left: -105px!important;
+	}
+}
+@media screen and (min-width: 767px){
+	.menu-main .nav.mega-menu .heading_white > a {
+		pointer-events: none;
+		color: #fff!important;
+		font-weight: 600;
+	}
+	.sub-menu, .menu-item, .menu-main .mega-menu .sub-menu > li {
+		width: fit-content!important;
+	}
+}
+@media screen and (max-width: 767px){
+	.sticky .searchform:after {
+		right: calc(100% - 30px)!important;
+		top: 16px!important;
+		display:block;
+	}
+	.searchform:after{
+		z-index:0!important;
+	}
+	.sticky .title_sticky{
+		display:block;
+	}
+	#show-menu-main[type="checkbox"]:checked ~ .show-menu-main:after {
+	    content: "\2715";
+	    position: fixed;
+	    top: 12%;
+	    left: 0;
+	    width: 60px;
+	}
+}
+
+.searchform:after{
+	z-index:0!important;
+	color:white!important;
+}
+.it-footer .searchform [type="submit"], .it-header-wrapper .searchform [type="submit"] {
+    background-color: transparent!important;
+	border-radius: 0!important; 
+}
+.title_sticky{
+	padding-top: 10px;
+    font-size: 1.5em;
+	display:none;
+}
+.pagesearch .searchform:after {
+	color:black!important;
+}
+.sticky .searchform {
+	display:inline;
+	position: inherit;
+}
+.search_menu{
+	display:none!important;
+	width:50px;
+	box-shadow: 0 0 0 #fff;
+}
+.sticky .search_menu{
+	display:block!important;
+}
+.sticky .it-header-navbar-wrapper{
+	padding-bottom: 5px;
+}
+
+@media screen and (min-width: 768px){
+	.sticky .search_menu{
+		padding: 0 0px;
+		width: 25px!important;
+		position: absolute!important;
+		top: 15px;
+		left: -100px;
+		box-shadow: 0 0 0 #fff;
+	}
+	.menu-main .nav .search_menu.current-menu-item, .menu-main .nav .search_menu.current-menu-ancestor{
+		box-shadow: 0 0 0 #fff;
+	}
+}	
+	.it-footer .mysearchform input[type="text"], .it-header-wrapper .mysearchform input[type="text"] {
+		color: #fff;
+		box-shadow: 0 1px 0px #fff;
+		background: transparent;
+	}
+	.mysearchform input[type="text"], .mysearchform [type="submit"] {
+		height: 45px;
+		float: left;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color:transparent;
+		border: none;
+		color:#fff;
+	}
+	.mysearchform input[type="text"]{
+		width:70%;
+	}
+	.mysearchform [type="submit"] {	
+		width:20%;
+	}
+	.mysearchform label {
+		display: none;
+	}
+
+.pagesearch .mysearchform [type="submit"] {
+    background-color: transparent;
+    color: #000;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .2);
+}
+.form-check [type=checkbox]:focus+label, .form-check [type=radio]:focus+label, .toggles label input[type=checkbox]:focus+.lever, :focus {
+    border-color: transparent!important;
+}	
+.pagesearch .mysearchform input[type="text"]{
+	color:#000;
+}
+#menu-social li{
+    padding: 15px 10px 15px 0;
+}
+.menu-main .mega-menu li a {
+    overflow: visible!important;
+}
+#footer .nav li {
+    padding: 15px 15px 15px 2px!Important;
+}
+#menu-legal li{
+	display: inline-block;
+}
+.it-footer-small-prints ul.it-footer-small-prints-list {
+    padding: 0!Important;
+}
+.home-widget {
+    background-color: transparent!important;
+}
+#MappaScuola iframe{
+	border: 1px solid black;
+	width: 100%;
+	min-height: 400px;
+}
+#Mappa ul.it-list li.page_item,#Mappa ul.it-list li.cat-item{
+	list-style-type: none!important;
+}
+#Mappa ul.it-list li.cat-item .metadata{
+	    font-size: 1em!important;
+}
+#archcat {
+    top: 100px!important;
+}
+#archcat .link-list-wrapper ul li a {
+    padding: 0;
+    line-height: 1em!important;
+}
+.espandi{
+	font-size: 1.5em!important;
+}
+.nolink{
+	text-decoration: none;	
+}
+.metarticoli a{
+	font-size: 0.8em!important;
+}
+#my_nav_Calendar li a {
+	font-size:1.2em;
+}
+#Localita li,#Eventi li{
+	padding:0;
+}
+/* Let's get this party started */
+.Eventi ::-webkit-scrollbar {
+    width: 8px;
+}
+/* Track */
+.Eventi ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.Eventi ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #0066cc; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.Eventi ::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+.collapse-body .collapse-header button[aria-expanded=true]:before {
+    width: 1.5rem!important;
+}
+.metadatasmall{
+	font-size:0.8em!important;
+}
