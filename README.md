@@ -13,3 +13,6 @@ demo del tema: http://isitalia.eduva.org/
 ## Change log
 - **0.0.0**
   - ***Pubblicazione del tema child***
+- **0.0.1**
+  - ***Pubblicazione primo aggiornamento***
+  
