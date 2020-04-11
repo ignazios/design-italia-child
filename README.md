@@ -11,5 +11,5 @@ facebook: https://www.facebook.com/wpscuola/
 ## Siti di riferimento
 demo del tema: http://isitalia.eduva.org/
 ## Change log
-- **0**
+- **0.0.0**
   - ***Pubblicazione del tema child***
