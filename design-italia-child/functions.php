@@ -9,8 +9,8 @@
   /* UPDATER THEME VERSION */
 require 'inc/theme-update-checker.php';
 $update_checker = new ThemeUpdateChecker(
-    'wpscuola',
-    'https://raw.githubusercontent.com/ignazios/wpscuola/master/wpscuola.json');
+    'design-italia-child',
+    'https://raw.githubusercontent.com/ignazios/design-italia-child/master/design-italia-child.json');
 
  if ( function_exists( 'add_theme_support' ) ) { 
     add_image_size( 'img-wrapper-thumb', 660, 300, true);
