@@ -5,7 +5,7 @@ tema Worpress dedicato alla Scuola
 ## Tema WPScuola
 https://github.com/ignazios/wpscuola
 ## Scarica il tema 
-[Qui](https://raw.githubusercontent.com/ignazios/italiawp-child/master/design-italia-child.zip) puoi scaricare il **Pacchetto** utilizzabile per la prima installazione o per l'aggiornamento manuale
+[Qui](https://raw.githubusercontent.com/ignazios/design-italia-child/master/design-italia-child.zip) puoi scaricare il **Pacchetto** utilizzabile per la prima installazione o per l'aggiornamento manuale
 ## Supporto
 facebook: https://www.facebook.com/wpscuola/
 ## Siti di riferimento
