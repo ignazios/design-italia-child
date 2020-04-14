@@ -63,6 +63,16 @@ $wp_customize->add_control('scuola_mappa_link', array(
     'section' => 'Scuola_Footer_Settings', 
     'settings' => 'scuola_mappa_link',
     'priority'	=> 3));  
+$wp_customize->add_setting('scuola_mappa_frame', array(
+    'default' => "", 
+    'capability' => 'edit_theme_options'));
+$wp_customize->add_control('scuola_mappa_frame', array(
+    'type' => 'textarea', 
+    'label' => 'Frame della miniatura della Mappa',
+    'description' => 'Inserire un frame 200x200 o lasciare vuoto per mantenere solo il link testuale',
+    'section' => 'Scuola_Footer_Settings', 
+    'settings' => 'scuola_mappa_frame',
+    'priority'	=> 4));  
 /**
 *  Sotto Pannello Dati Amministrazione
 */
@@ -287,7 +297,7 @@ $wp_customize->add_section('Scuola_AmmAfferente_Settings',array(
     'title'			 =>'Dati Amministrazione Afferente',
     'priority'		 =>1,
     'description'	 => '<h2>Amministrazione Afferente</h2>
-    					Impostazione dati del\'mministrazione di riferimento che vengono riportati nel\'Head delle pagine a sinistra',
+    					Impostazione dati dell\'mministrazione di riferimento che vengono riportati nel\'Head delle pagine a sinistra',
     'panel'			 =>'scuola_settings_home',
 ));
 $wp_customize->add_setting( 'Scuola_AmmAfferente_Nome' , array(

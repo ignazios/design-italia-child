@@ -55,7 +55,7 @@ class ScuolaFAQ {
 		'items_list_navigation' => __( 'Naviga la Lista delle FAQs', 'wpscuola' ),
 		'filter_items_list'     => __( 'Filtra lista FAQs', 'wpscuola' ),
 	);
-	$args = array(
+	$atts = array(
 		'label'                 => __( 'FAQ', 'wpscuola' ),
 		'description'           => __( "Frequently asked questions (FAQ), alias Le domande più frequenti.", 'wpscuola' ),
 		'labels'                => $labels,
@@ -76,35 +76,42 @@ class ScuolaFAQ {
 		'show_in_rest' => true,
 		'supports'          	=> array( 'title', 'editor', 'revisions', 'page-attributes' ),
 	);
-	register_post_type( 'faq', $args );
- 
-       register_taxonomy('group','faq',
-       			array(
-       			'labels'                     =>array(
-	                        'name'                          => 'Gruppi',
-	                        'singular_name'                 => 'Gruppo',
-	                        'search_items'                  => 'Cerca Gruppi',
-	                        'popular_items'                 => 'Gruppi popolari',
-	                        'all_items'                     => 'Tutti i Gruppi',
-	                        'parent_item'                   => null,
-	                        'parent_item_colon'             => null,
-	                        'edit_item'                     => 'Modifica Groupo',
-	                        'update_item'                   => 'Aggiorna Groupo',
-	                        'add_new_item'                  => 'Aggiungi un Nuovo Groupo',
-	                        'new_item_name'                 => 'Nome nuovo Gruppo',
-	                        'separate_items_with_commas'    => 'Separare i Gruppi con le virgole',
-	                        'add_or_remove_items'           => 'Aggiungi o Rimuovi Gruppi',
-	                        'choose_from_most_used'         => 'Seleziona dai Gruppi più usati',
-	                        'menu_name'                     => 'Gruppi',
-	                    ),
-                    'hierarchical'              => true,
-                    'show_ui'                   => true,
-                    'update_count_callback'     => '_update_post_term_count',
-                    'query_var'                 => true,
-                    'rewrite'                   => array( 'with_front' => false )
-                )
-            );
-	}
+	register_post_type( 'faq', $atts );
+
+	$labels = array(
+		'name'                       => _x( 'Gruppi di FAQs', 'Taxonomy General Name', 'wpscuola' ),
+		'singular_name'              => _x( 'Gruppo di FAQ', 'Taxonomy Singular Name', 'wpscuola' ),
+		'menu_name'                  => __( 'Gruppi di FAQs', 'wpscuola' ),
+		'all_items'                  => __( 'Gruppi di FAQs', 'wpscuola' ),
+		'parent_item'                => __( 'Gruppo di FAQs padre', 'wpscuola' ),
+		'parent_item_colon'          => __( 'Gruppi di FAQs padre', 'wpscuola' ),
+		'new_item_name'              => __( 'Nuovo Gruppo di FAQs', 'wpscuola' ),
+		'add_new_item'               => __( 'Aggiungi nuovo Gruppo di FAQs', 'wpscuola' ),
+		'edit_item'                  => __( 'Modifica Gruppo di FAQs', 'wpscuola' ),
+		'update_item'                => __( 'Aggiorna Gruppo di FAQs', 'wpscuola' ),
+		'view_item'                  => __( 'Visualizza Gruppo di FAQs', 'wpscuola' ),
+		'separate_items_with_commas' => __( 'Separere i Gruppo di FAQs con le virgole', 'wpscuola' ),
+		'add_or_remove_items'        => __( 'Aggiungi o Rimuovi Gruppi di FAQs', 'wpscuola' ),
+		'choose_from_most_used'      => __( 'Seleziona tra i Gruppi di FAQs magiornamente utilizzati', 'wpscuola' ),
+		'popular_items'              => __( 'Gruppi di FAQs più popolari', 'wpscuola' ),
+		'search_items'               => __( 'Cerca Gruppo di FAQs', 'wpscuola' ),
+		'not_found'                  => __( 'Gruppo di FAQs non trovato', 'wpscuola' ),
+		'no_terms'                   => __( 'Nessun Gruppo di FAQs', 'wpscuola' ),
+		'items_list'                 => __( 'Elenco Gruppo di FAQs', 'wpscuola' ),
+		'items_list_navigation'      => __( 'Naviga nella Lista dei Gruppi di FAQs', 'wpscuola' ),
+	);
+	$atts = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+		'show_in_rest'               => true,
+	);
+	register_taxonomy( 'faq_gruppi', array( 'faq' ), $atts );
+}
 
     function messages( $messages ) {
         global $post, $post_ID;
@@ -151,7 +158,7 @@ class ScuolaFAQ {
 	                the_excerpt();
 	                break;
 	            case "gruppo":
-	                echo get_the_term_list( $post->ID, 'group', '', ', ', '' );
+	                echo get_the_term_list( $post->ID, 'faq_gruppi', '', ', ', '' );
 	                break;
 	            case "shortcode":
 	                printf( '[faq p=%d]', get_the_ID() );
@@ -168,8 +175,7 @@ class ScuolaFAQ {
         add_filter( 'manage_posts_columns',     				array( $this, 'Colonne_FAQ_Intestazioni' ) );
         add_action( 'manage_posts_custom_column',   			array( $this, 'Colonne_FAQ_Contenuti' ) );
         add_filter( 'post_updated_messages',    				array( $this, 'messages' ) );
-        add_filter( 'post_updated_messages',       				array( $this, 'messages' ) );
-		add_action( 'admin_menu', 								array( $this, 'add_faq_metabox' ) );
+ 		add_action( 'admin_menu', 								array( $this, 'add_faq_metabox' ) );
         add_shortcode( 'FAQ',                       			array( $this, 'visualizza_faq' ) );
      }
     private function return_to_top( $link ) {
@@ -184,28 +190,34 @@ class ScuolaFAQ {
         }
         return $html;
     }
-    public function visualizza_faq( $args) {
-        // Merge incoming args with the class defaults
-        $args = wp_parse_args( $args, array(
-            'order'             => 'ASC',
-            'orderby'           => 'title',
-            'posts_per_page'    => -1,
-            'gruppi'           => '') );
-        $html = '<div id="collapseDivFAQ" class="collapse-div collapse-background-active" role="tablist">';
-        $terms = get_terms( 'group' );
-        $gruppi = $args['gruppi'];
-        $gruppi=explode(",",str_replace(' ', '', $gruppi));
-        if ( ! empty( $terms ) ) {
-            foreach ( $terms as $term ) {
-                if (in_array($term->slug, $gruppi) ){
+ // Add Shortcode
+	function visualizza_faq( $atts ) {
+
+		// Attributes
+		$atts = shortcode_atts(
+			array(	'order'             => 'ASC',
+            		'orderby'           => 'title',
+            		'posts_per_page'    => -1,
+            		'gruppi'           	=> ''),
+			$atts,
+			'faq'
+		);
+
+	    $html = '<div id="collapseDivFAQ" class="collapse-div collapse-background-active" role="tablist">';
+	    $terms = get_terms( 'faq_gruppi' );
+	    $gruppi = $atts['gruppi'];
+	    $gruppi=explode(",",str_replace(' ', '', $gruppi));
+	    if ( ! empty( $terms ) ) {
+	        foreach ( $terms as $term ) {
+	            if (in_array($term->slug, $gruppi) ){
 	                $query_args = array(
 	                    'post_type'         => 'faq',
-	                    'order'             => $args['order'],
-	                    'orderby'           => $args['orderby'],
-	                    'posts_per_page'    => $args['posts_per_page'],
+	                    'order'             => $atts['order'],
+	                    'orderby'           => $atts['orderby'],
+	                    'posts_per_page'    => $atts['posts_per_page'],
 	                    'tax_query'         => array(
 	                        array(
-	                            'taxonomy'  => 'group',
+	                            'taxonomy'  => 'faq_gruppi',
 	                            'field'     => 'slug',
 	                            'terms'     => array( $term->slug ),
 	                            'operator'  => 'IN'
@@ -217,34 +229,35 @@ class ScuolaFAQ {
 	               // echo $q->request;
 	                if ( $q->have_posts() ) {
 	                    $html .= '  <div class="collapse-header" id="heading' . $term->term_id . '">
-    <button data-toggle="collapse" data-target="#collapse' . $term->term_id . '" aria-expanded="false" aria-controls="collapse' . $term->term_id . '">' . $term->name . '</button>';
- 	                    // If the term has a description, show it
+	<button data-toggle="collapse" data-target="#collapse' . $term->term_id . '" aria-expanded="false" aria-controls="collapse' . $term->term_id . '">' . $term->name . '</button>';
+	                     // If the term has a description, show it
 	                    if ( $term->description )
 	                        $html .= '<p>' . $term->description . '</p>';
- 						$html .= '</div> 
- 	<div id="collapse' . $term->term_id . '" class="collapse " role="tabpanel" aria-labelledby="heading' . $term->term_id . '">
-    	<div class="collapse-body">';
+	 					$html .= '</div> 
+	 <div id="collapse' . $term->term_id . '" class="collapse " role="tabpanel" aria-labelledby="heading' . $term->term_id . '">
+		<div class="collapse-body">';
 	                    while ( $q->have_posts() ) : $q->the_post();
 							$html .='    	     
 	    	<div id="collapseDiv' . $term->term_id . '" class="collapse-div" role="tablist">
 				<div class="collapse-header" id="headingInt'. get_the_ID().'">
-          			<button data-toggle="collapse" data-target="#collapseVoce'. get_the_ID().'" aria-expanded="false" aria-controls="collapseVoce'. get_the_ID().'">'.get_the_title().'</button>
-        		</div>
+	      			<button data-toggle="collapse" data-target="#collapseVoce'. get_the_ID().'" aria-expanded="false" aria-controls="collapseVoce'. get_the_ID().'">'.get_the_title().'</button>
+	    		</div>
 		        <div id="collapseVoce'. get_the_ID().'" class="collapse " role="tabpanel" aria-labelledby="headingInt'. get_the_ID().'">
 		    		<div class="collapse-body">' . apply_filters( 'the_content', get_the_content() ).' </div>
 		        </div>
 		    </div>';
 	                    endwhile;
-                        $html .= '
-        </div>
+	                    $html .= '
+	    </div>
 	</div>';
 	                } // end have_posts()
 	                wp_reset_postdata();
 	            } // end foreach
 	        }
-        } 
-        return $html;
-    }
+	    } 
+	    return $html;
+	}
+
     public function add_faq_metabox() {		
 	    add_meta_box( 'faq-box-shortcode', 'Shortcode FAQ', 	array( $this, 'faq_box_shortcode' ), 'faq', 'side' );
 	}

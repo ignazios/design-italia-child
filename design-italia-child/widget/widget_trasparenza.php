@@ -22,39 +22,44 @@ class Trasparenza extends WP_Widget {
             $title = apply_filters('widget_title', $instance['titolo']);
             $Is_AT=(isset($instance['AT']) And $instance['AT']!="");
             $Link_AT=(isset($instance['LAT']) And $instance['LAT']!="");
-            $Is_AAC=(isset($instance['AAC']) And $instance['AAC']!="");
+            $Is_AP=(isset($instance['AP']) And $instance['AP']!="");
             $Link_AP=(isset($instance['LAP']) And $instance['LAP']!="");
-            $Is_AAS=(isset($instance['AAS']) And $instance['AAS']!="");
+            $Link_AC=(isset($instance['LAC']) And $instance['LAC']!="");
+            $Link_URP=(isset($instance['LURP']) And $instance['LURP']!="");
             $Is_AC=(isset($instance['AC']) And $instance['AC']!="");
             $Is_URP=(isset($instance['URP']) And $instance['URP']!="");
-            if( !$Is_AT And !$Link_AT And !$Link_AP And !$Is_AAC AND !$Is_AAS AND !$Is_AC AND !$Is_URP){
+            if( !$Is_AT And !$Link_AT And !$Link_AP And !$Link_AC And  $Link_URP And !$Is_AP AND !$Is_AC AND !$Is_URP){
 	            	return;
 			}
+			$LAT=($Is_AT) ? $instance['AT']:$instance['LAT'];
+			$AP=($Is_AP) ? $instance['AAC']:$instance['LAP'];
+			$AC=($Is_AC) ? $instance['AC']:$instance['LAC'];
+			$URP=($Is_URP) ? $instance['URP']:$instance['LURP'];
 ?>
 <section id="trasp_<?php echo $args['widget_id'];?>"  class="home-widget container ">
-<?php 
+<?php  
             echo $args['before_widget'];
             if ( $title ) {
                 echo $args['before_title'] . $title . $args['after_title'];
             } ?>   
   <div class="row d-flex justify-content-center" >
     <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 bg-primary rounded text-center">
-    	<a href="<?php echo $instance['AT'];?>" class="lead testo-bianco">Amministrazione Trasparente</a>
+    	<a href="<?php echo $LAT;?>" class="lead testo-bianco">Amministrazione Trasparente</a>
     </div>
     <div class="col-lg-3 col-sm-6 col-12 m-2">
     	  <div class="row mb-2 h-48">
 		    <div class="col p-2 bg-primary rounded text-center">
-				<a href="<?php echo $instance['URP']; ?>" class="lead testo-bianco" >URP</a>
+				<a href="<?php echo $URP; ?>" class="lead testo-bianco" >URP</a>
 			</div>
 		  </div>
 		  <div class="row h-48 pb-1">
 		    <div class="col p-2 bg-primary rounded text-center">
-		    	<a href="<?php echo $instance['AC'];?>" class="lead testo-bianco" >Accesso Civico</a>
+		    	<a href="<?php echo $AC;?>" class="lead testo-bianco" >Accesso Civico</a>
 		    </div>
 		  </div> 	
     </div>
     <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 bg-primary rounded text-center">
-		<a href="<?php echo $instance['AAC']; ?>" class="lead testo-bianco" >Albo OnLine</a>
+		<a href="<?php echo $AP; ?>" class="lead testo-bianco" >Albo OnLine</a>
     </div>
   </div>
 <?php   echo $args['after_widget']; ?>
@@ -84,8 +89,9 @@ class Trasparenza extends WP_Widget {
             $instance['AT'] = strip_tags($new_instance['AT']);
             $instance['LAT'] = strip_tags($new_instance['LAT']);
             $instance['LAP'] = strip_tags($new_instance['LAP']);
-            $instance['AAC'] = strip_tags($new_instance['AAC']);
-            $instance['AAS'] = strip_tags($new_instance['AAS']);
+            $instance['LAC'] = strip_tags($new_instance['LAC']);
+            $instance['LURP'] = strip_tags($new_instance['LURP']);
+            $instance['AP'] = strip_tags($new_instance['AP']);
             $instance['AC'] = strip_tags($new_instance['AC']);
             $instance['URP'] = strip_tags($new_instance['URP']);
             return $instance;
@@ -102,10 +108,11 @@ class Trasparenza extends WP_Widget {
 			);		
             $Pagine=get_pages( $args );
             $ElencoAT=$this->make_List_Pages($Pagine,$this->get_field_id( 'AT' ),$this->get_field_name( 'AT' ),! empty( $instance['AT'] ) ? $instance['AT'] :"");
-        	$Link_AT=$instance['LAT'];
-           	$Link_AP=$instance['LAP'];
-            $ElencoAAC=$this->make_List_Pages($Pagine,$this->get_field_id( 'AAC' ),$this->get_field_name( 'AAC' ),! empty( $instance['AAC'] ) ? $instance['AAC'] :"");
-            $ElencoAAS=$this->make_List_Pages($Pagine,$this->get_field_id( 'AAS' ),$this->get_field_name( 'AAS' ),! empty( $instance['AAS'] ) ? $instance['AAS'] :"");
+        	$Link_AT=(isset($instance['LAT'])?$instance['LAT']:"");
+           	$Link_AP=(isset($instance['LAP'])?$instance['LAP']:"");
+           	$Link_AC=(isset($instance['LAC'])?$instance['LAC']:"");
+           	$Link_URP=(isset($instance['LURP'])?$instance['LURP']:"");
+            $ElencoAP=$this->make_List_Pages($Pagine,$this->get_field_id( 'AP' ),$this->get_field_name( 'AP' ),! empty( $instance['AP'] ) ? $instance['AP'] :"");
             $ElencoAC=$this->make_List_Pages($Pagine,$this->get_field_id( 'AC' ),$this->get_field_name( 'AC' ),! empty( $instance['AC'] ) ? $instance['AC'] :"");
             $ElencoURP=$this->make_List_Pages($Pagine,$this->get_field_id( 'URP' ),$this->get_field_name( 'URP' ),! empty( $instance['URP'] ) ? $instance['URP'] :"");
             ?>
@@ -114,11 +121,7 @@ class Trasparenza extends WP_Widget {
                 <label for="<?php echo $this->get_field_id( 'titolo' ); ?>">Titolo Sezione:</label>
                 <input type="text" class="widefat" id="<?php echo $this->get_field_id( 'titolo' ); ?>" name="<?php echo $this->get_field_name( 'titolo' ); ?>" value="<?php echo esc_attr( $titolo ); ?>" />
             </p>
-            <p>
-			    <label for="<?php echo $this->get_field_id( 'AT' );?>">Pagina Amministrazione Trasparente:</label><br />
-           		<?php echo $ElencoAT; ?>
-            </p>
-            <p>
+             <p>
 			    <label for="<?php echo $this->get_field_id( 'LAT' );?>">Link Esterno Amministrazione Trasparente:</label><br />
            		<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'LAT' ); ?>" name="<?php echo $this->get_field_name( 'LAT' ); ?>" value="<?php echo esc_attr( $Link_AT ); ?>" />
             </p>
@@ -127,13 +130,21 @@ class Trasparenza extends WP_Widget {
            		<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'LAP' ); ?>" name="<?php echo $this->get_field_name( 'LAP' ); ?>" value="<?php echo esc_attr( $Link_AP ); ?>" />
             </p>
            <p>
-			    <label for="<?php echo $this->get_field_id( 'AAC' );?>">Pagina Albo Atti Correnti:</label><br />
-           		<?php echo $ElencoAAC; ?>
+			    <label for="<?php echo $this->get_field_id( 'LAC' );?>">Link Accesso Civico:</label><br />
+           		<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'LAC' ); ?>" name="<?php echo $this->get_field_name( 'LAC' ); ?>" value="<?php echo esc_attr( $Link_AC ); ?>" />
+            </p>
+          <p>
+			    <label for="<?php echo $this->get_field_id( 'LAC' );?>">Link URP:</label><br />
+           		<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'LURP' ); ?>" name="<?php echo $this->get_field_name( 'LURP' ); ?>" value="<?php echo esc_attr( $Link_URP ); ?>" />
             </p>
            <p>
-			    <label for="<?php echo $this->get_field_id( 'AAS' );?>">Pagina Albo Atti Storico:</label><br />
-           		<?php echo $ElencoAAS; ?>
+			    <label for="<?php echo $this->get_field_id( 'AT' );?>">Pagina Amministrazione Trasparente:</label><br />
+           		<?php echo $ElencoAT; ?>
             </p>
+           <p>
+			    <label for="<?php echo $this->get_field_id( 'AP' );?>">Pagina Albo:</label><br />
+           		<?php echo $ElencoAP; ?>
+           </p>
            <p>
 			    <label for="<?php echo $this->get_field_id( 'AC' );?>">Pagina Accesso Civico:</label><br />
            		<?php echo $ElencoAC; ?>

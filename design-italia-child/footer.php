@@ -58,7 +58,13 @@ function myFunction() {
                 <?php echo (get_theme_mod('Scuola_Amministrazione_PIVA')!=""?"<li>P.Iva ".get_theme_mod('Scuola_Amministrazione_PIVA')."</li>":""); ?></li>
                 Cod. Univoco <?php echo get_theme_mod('Scuola_Amministrazione_CodUni');	
 				if(get_theme_mod('scuola_mappa_attiva')){?>
-				<li><i class="fas fa-map-marked-alt"></i> <a href="<?php echo get_theme_mod('scuola_mappa_link'); ?>" target="_blank" title="Mappa con la geolocalizzazione dell'Istituto" class="d-inline"><?php echo get_theme_mod('scuola_mappa_titolo'); ?></a></li>
+				<li> 
+				<?php if(get_theme_mod('scuola_mappa_frame')){
+					echo get_theme_mod('scuola_mappa_frame');
+					  }else{?> 
+				<i class="fas fa-map-marked-alt"></i> <a href="<?php echo get_theme_mod('scuola_mappa_link'); ?>" target="_blank" title="Mappa con la geolocalizzazione dell'Istituto" class="d-inline"><?php echo get_theme_mod('scuola_mappa_titolo'); ?></a>
+				<?php }?>
+				</li>
 		  <?php }?>
 			  </ul>
             </div>

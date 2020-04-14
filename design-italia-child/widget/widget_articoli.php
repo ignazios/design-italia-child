@@ -42,12 +42,12 @@
  			$numelementi=isset($instance['numelementi'])?$instance['numelementi']:"";
  			$linkLT=isset($instance['leggitutto'])?$instance['leggitutto']:"";
 
-			$TitoloPB=get_cat_name( $catprimoblocco );
+			$TitoloPB=isset($instance['titolosx'])?$instance['titolosx']:"";
 			$Catargs = array( 'cat' => $catprimoblocco,
 				   'posts_per_page'  => $numelementi,
 				   'post_status' => (is_user_logged_in()? array('publish','private'):'publish'));
 			$ArticoliPB = get_posts( $Catargs );	   
-			$TitoloSB=get_cat_name( $catsecondoblocco );
+			$TitoloSB=isset($instance['titolodx'])?$instance['titolodx']:"";
 			$Catargs = array( 'cat' => $catsecondoblocco,
 				   'posts_per_page'  => $numelementi,
 				   'post_status' => (is_user_logged_in()? array('publish','private'):'publish'));
@@ -96,7 +96,7 @@
 						<li>
 							<div class="it-card-footer">
 		          				<a class="read-more" href="<?php echo get_category_link($catprimoblocco);?>">
-		              				<span class="text"><i class="fas fa-link p-1"></i> Leggi articolo</span>
+		              				<span class="text"><i class="fas fa-link p-1"></i> Leggi tutto</span>
 		            			</a>
 		          			</div>
 						</li>
@@ -166,6 +166,8 @@
             $instance['catsecondoblocco']=strip_tags($new_instance['catsecondoblocco']);   
             $instance['numelementi']=strip_tags($new_instance['numelementi']);   
 			$instance['leggitutto']=strip_tags($new_instance['leggitutto']);
+			$instance['titolosx']=strip_tags($new_instance['titolosx']);
+			$instance['titolodx']=strip_tags($new_instance['titolodx']);
             return $instance;
         }
 
@@ -175,6 +177,8 @@
  			$catprimoblocco=isset($instance['catprimoblocco'])?$instance['catprimoblocco']:0;
  			$catsecondoblocco=isset($instance['catsecondoblocco'])?$instance['catsecondoblocco']:0;
             $numelementi=isset($instance['numelementi'])?$instance['numelementi']:5;
+            $titolosx=isset($instance['titolosx'])?$instance['titolosx']:"";
+            $titolodx=isset($instance['titolodx'])?$instance['titolodx']:"";
 ?>           
 
            <p>
@@ -188,7 +192,7 @@
      <div class="Servizi">
         <h3>Blocco di sinistra</h3>
      	<label for="<?php echo $this->get_field_id( 'titolosx' ); ?>">Titolo:</label>
-    	<input type="text" name="titolosx" id="titolosx" value=""><br />
+    	<input type="text" id="<?php echo $this->get_field_id( 'titolosx' ); ?>" name="<?php echo $this->get_field_name( 'titolosx' ); ?>" value="<?php echo $titolosx; ?>" ><br />
 		<input type="hidden" name="catprimoblocco" id="catprimoblocco" value="-1">
         <label for="<?php echo $this->get_field_id( 'catprimoblocco' ); ?>">Categoria:</label>
 <?php  
@@ -212,7 +216,7 @@
      <div class="Servizi">
     	<h3>Colonna di Destra</h3>
     	<label for="<?php echo $this->get_field_id( 'titolodx' ); ?>">Titolo:</label>
-    	<input type="text" name="titolodx" id="titolodx" value=""><br />
+    	<input type="text"  id="<?php echo $this->get_field_id( 'titolodx' ); ?>" name="<?php echo $this->get_field_name( 'titolodx' ); ?>" value="<?php echo $titolodx; ?>"><br />
     	<label for="<?php echo $this->get_field_id( 'catsecondoblocco' ); ?>">Categoria:</label>
 <?php  
 	$args = array(
