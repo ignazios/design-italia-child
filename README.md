@@ -1,6 +1,6 @@
 # wpscuola
 tema Worpress dedicato alla Scuola
-![Logo](http://eduva.org/depo/LogoTemplateScuolaEsteso.png)
+![Logo](https://github.com/ignazios/design-italia-child/logo_wpscuola.png)
 ## Manuale
 ## Tema WPScuola
 https://github.com/ignazios/wpscuola
