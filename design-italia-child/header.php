@@ -9,9 +9,21 @@ $Id
       <?php wp_head(); ?>
    </head>
    <body <?php body_class(); ?>>
-      <div id="wrapper" class="hfeed">
-         <header id="header" class="" role="banner">
-
+<?php	if(get_theme_mod('scuola_cookies_attiva')){ ?>
+		<div class="cookiebar">
+		    <p><?php echo (get_theme_mod('scuola_cookies_testoMSG')!=""?get_theme_mod('scuola_cookies_testoMSG'):"Questo sito utilizza cookie tecnici, analytics e di terze parti. <br>Proseguendo nella navigazione accetti l’utilizzo dei cookie.");?></p>
+		    <div class="cookiebar-buttons">
+		        <a href="<?php echo get_permalink(get_theme_mod('scuola_cookies_pulsSXlink'));?>" class="cookiebar-btn"><?php echo get_theme_mod('scuola_cookies_pulsSXText');?></a>
+		        <button data-accept="cookiebar" class="cookiebar-btn cookiebar-confirm"><?php echo get_theme_mod('scuola_cookies_accettaText');?><span class="sr-only"> i cookies</span></button>
+		    </div>
+		</div>
+ <?php }?>
+	<div class="skiplinks">
+		<a class="sr-only sr-only-focusable" href="#main">Vai al contenuto principale</a>
+	  	<a class="sr-only sr-only-focusable" href="#footer">Vai al footer</a>
+	</div>
+    <div id="wrapper" class="hfeed">
+    	<header id="header" class="" role="banner">
          <div class="it-header-wrapper">
            <div class="it-header-slim-wrapper" id="header-superiore">
              <div class="container">
@@ -63,7 +75,8 @@ $Id
                        </div>
                        <div class="it-right-zone">
                          <div class="it-socials d-none d-md-flex ml-0">
-                           <?php wp_nav_menu( array( 'theme_location' => 'menu-social', 'container' => 'ul', 'menu_class' => 'nav')); ?>
+                           <?php //wp_nav_menu( array( 'theme_location' => 'menu-social', 'container' => 'ul', 'menu_class' => 'nav')); 
+                           		get_MenuSocial("menu-social","nav","menu-item")?>
                          </div>
                          <div class="it-search-wrapper ml-0">
 			           <?php $IDForm="mysearchform";
@@ -107,16 +120,17 @@ $Id
            </div>
          </div>
          </header>
-		<section id="breadcrumbs" role="main" class="container-fluid">
-		   <div class="container-fluid">
-		      <div class="row">
-			      <div class="col-md-12">
-	         		<?php if(function_exists('bcn_display') And !is_front_page()){
-        					bcn_display();
-    						}
-    				?>
+		<section id="main">
+			<section id="breadcrumbs" role="main" class="container-fluid">
+			   <div class="container-fluid">
+			      <div class="row">
+				      <div class="col-md-12">
+		         		<?php if(function_exists('bcn_display') And !is_front_page()){
+	        					bcn_display();
+	    						}
+	    				?>
+					  </div>
 				  </div>
-			  </div>
-			</div>
-		</section>
-         <div id="container-fluid" class="null">
+				</div>
+			</section>
+        	<div id="container-fluid" class="null">

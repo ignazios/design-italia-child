@@ -1,16 +1,19 @@
-<div class="mx-auto text-center pb-3" style="width: 200px;">
-  <a href="#" aria-hidden="true" data-attribute="back-to-top">
-    <i class="fas fa-arrow-circle-up fa-3x"></i>
-  </a>
-</div>
-<div class="clear"></div>
-</div>
-
+			<div class="mx-auto text-center pb-3" style="width: 200px;">
+			  <a href="#" aria-hidden="true" data-attribute="back-to-top">
+			    <i class="fas fa-arrow-circle-up fa-3x"></i>
+			  </a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</section>
 <script>
+
+window.__PUBLIC_PATH__ = "<?php echo get_stylesheet_directory_uri();?>/font/fonts"
+
 window.onscroll = function() {myFunction()};
 
 var header = document.getElementById("myHeader");
-var container = document.getElementById("container-fluid");
+var container = document.getElementById("main");
 var sticky = header.offsetTop;
 
 function myFunction() {
@@ -59,11 +62,9 @@ function myFunction() {
                 Cod. Univoco <?php echo get_theme_mod('Scuola_Amministrazione_CodUni');	
 				if(get_theme_mod('scuola_mappa_attiva')){?>
 				<li> 
-				<?php if(get_theme_mod('scuola_mappa_frame')){
-					echo get_theme_mod('scuola_mappa_frame');
-					  }else{?> 
-				<i class="fas fa-map-marked-alt"></i> <a href="<?php echo get_theme_mod('scuola_mappa_link'); ?>" target="_blank" title="Mappa con la geolocalizzazione dell'Istituto" class="d-inline"><?php echo get_theme_mod('scuola_mappa_titolo'); ?></a>
-				<?php }?>
+				<?php if(!get_theme_mod('scuola_mappa_frame')){?> 
+						<i class="fas fa-map-marked-alt"></i> <a href="<?php echo get_theme_mod('scuola_mappa_link'); ?>" target="_blank" title="Mappa con la geolocalizzazione dell'Istituto" class="d-inline"><?php echo get_theme_mod('scuola_mappa_titolo'); ?></a>
+				<?php } ?>
 				</li>
 		  <?php }?>
 			  </ul>
@@ -137,7 +138,7 @@ function myFunction() {
       </section>
       <section class="py-4 border-white border-top">
         <div class="row">
-          <div class="col-lg-4 col-md-4 pb-2">
+          <div class="col-lg-4 col-md-12 pb-2">
   		<?php
 			if ( has_nav_menu( 'menu-footer' ) ) {
 				$locations = get_nav_menu_locations();
@@ -147,25 +148,26 @@ function myFunction() {
 			wp_nav_menu(array( 'theme_location' => 'menu-footer', 'container' => 'ul', 'menu_class' => 'footer-list link-list clearfix' ));
 		} ?>   
           </div>
-          <div class="col-lg-4 col-md-4 pb-2">
-  		<?php
-			if ( has_nav_menu( 'menu-footer-secondo' ) ) {
-				$locations = get_nav_menu_locations();
-				$menu = get_term( $locations["menu-footer-secondo"], 'nav_menu' );
-			?>
+          <div class="col-lg-4 col-md-12 pb-2">
+				<?php if(get_theme_mod('scuola_mappa_frame')){?>
+					<h4><i class="fas fa-map-marked"></i> Siamo qui</h4>
+				<?php	echo get_theme_mod('scuola_mappa_frame');
+				 }
+				if ( has_nav_menu( 'menu-footer-secondo' ) ) {
+					$locations = get_nav_menu_locations();
+					$menu = get_term( $locations["menu-footer-secondo"], 'nav_menu' );?>
 			<h4><?php echo htmlspecialchars_decode($menu->name); ?></h4><?php
 			wp_nav_menu(array( 'theme_location' => 'menu-footer-secondo', 'container' => 'ul', 'menu_class' => 'footer-list link-list clearfix' ));
 		} ?>   
           </div>
-          <div class="col-lg-4 col-md-4 pb-2">
-            <div class="pb-2">
- 		<?php
-			if ( has_nav_menu( 'menu-social' ) ) {?>
-              <h4><i class="fas fa-hashtag"></i> Seguici su</h4>
-              <?php wp_nav_menu( array( 'theme_location' => 'menu-social', 'container' => 'ul', 'menu_class' => 'nav list-inline text-left social')); ?>
-        <?php }?>
-            </div>
-           </div>
+          <div class="col-lg-4 col-md-12 pb-2">
+          <?php if(get_theme_mod('scuola_social_footersectionTesto')){?>
+              <h4><i class="fas fa-hashtag"></i> <?php echo get_theme_mod('scuola_social_footersectionTesto');?></h4>
+              <?php //
+              get_MenuSocial("menu-social","nav list-inline text-left social","menu-item");
+              //wp_nav_menu( array( 'theme_location' => 'menu-social', 'container' => 'ul', 'menu_class' => 'nav list-inline text-left social')); 
+           } ?>
+         </div>
         </div>
       </section>
  

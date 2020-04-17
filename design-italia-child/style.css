@@ -5,7 +5,7 @@ Template: design-italia
 Author: Scimone Ignazio
 Author URI: https://eduva.org/
 Description: Design Italia è un tema di WordPress utilizzabile per i siti internet della Pubblica Amministrazione italiana.
-Version: 0.0.2
+Version: 0.0.3
 License: AGPL-3.0
 License URI: LICENSE
 Tags: one-column, two-columns, right-sidebar, custom-header, custom-colors, custom-logo, custom-menu, footer-widgets, editor-style, featured-images, post-formats, theme-options
@@ -390,6 +390,12 @@ article .attachments h3{
 #footer .nav li {
     padding: 15px 15px 15px 2px!Important;
 }
+#footer .social li {
+    padding: 0 15px 15px 2px!Important;
+}
+#menu-social{
+	flex-wrap:nowrap!important;
+}
 #menu-legal li{
 	display: inline-block;
 }
@@ -458,4 +464,8 @@ article .attachments h3{
 }
 .metadatasmall{
 	font-size:0.8em!important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-bottom-color: #06c!important;
 }

@@ -100,7 +100,7 @@ class Trasparenza extends WP_Widget {
         function form( $instance ) {
 
             $instance = wp_parse_args( (array) $instance, array( ) ); 
-            $titolo = ! empty( $instance['titolo'] ) ? $instance['titolo'] : esc_html__( 'Servizi', 'text_domain' );
+            $titolo = ! empty( $instance['titolo'] ) ? $instance['titolo'] : esc_html__( 'Servizi', 'wpscuola' );
             $args = array(
 			'post_status' => 'publish',
 			'sort_order' => 'asc',

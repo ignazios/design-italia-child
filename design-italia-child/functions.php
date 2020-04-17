@@ -69,15 +69,17 @@ function carica_script_parent() {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '-child/style.css');
     wp_enqueue_style('USRLo_fonts_Awesome', get_template_directory_uri() . '-child/font/css/all.css');
 	wp_enqueue_script('PopperScript', get_template_directory_uri().'-child/js/popper.min.js', array('jquery'),null ,true );
-	wp_enqueue_script('BootstrapScript', get_template_directory_uri().'-child/js/bootstrap.min.js', array('jquery'),null ,true );
+//	wp_enqueue_script('BootstrapScript', get_template_directory_uri().'-child/js/bootstrap.min.js', array('jquery'),null ,true );
  //   wp_enqueue_script('DesignItaliaScript', get_template_directory_uri().'-child/js/bootstrap-italia.min.js', array('jquery'),null ,true );
- //   wp_enqueue_script('DesignItaliaBundleScript', get_template_directory_uri().'-child/js/bootstrap-italia.bundle.min.js', array('jquery'),null ,true );
+    wp_enqueue_script('DesignItaliaBundleScript', get_template_directory_uri().'-child/js/bootstrap-italia.bundle.min.js', array('jquery'),null ,true );
 	wp_enqueue_script('DesignItaliaChild', get_template_directory_uri().'-child/js/Public.js', array('jquery'),null ,true );
 	if (is_front_page()) {
-		wp_enqueue_script( 'DI-child-Js-carousel', get_stylesheet_directory_uri() . '/owlcarousel/owl.carousel.js' );
-    	wp_enqueue_style('DI-child-carousel', get_stylesheet_directory_uri() . '/owlcarousel/assets/owl.carousel.min.css');
-		wp_enqueue_style('DI-child-carousel-theme', get_stylesheet_directory_uri() . '/owlcarousel/assets/owl.theme.default.min.css');	
-		wp_enqueue_script('ScuolaCarousel', get_template_directory_uri().'-child/js/owlcarousel.js', array('jquery'),null ,true );
+		wp_enqueue_script( 'Scuola-image_hover_effects_JS', get_stylesheet_directory_uri() . '/js/production.min.js' );
+		wp_enqueue_style('Scuola-image_hover_effects_CSS', get_stylesheet_directory_uri() . '/css/image_hover_effects.css');	
+//		wp_enqueue_script( 'Scuola-Js-carousel', get_stylesheet_directory_uri() . '/owlcarousel/owl.carousel.js' );
+//    	wp_enqueue_style('Scuola-CSS-carousel', get_stylesheet_directory_uri() . '/owlcarousel/assets/owl.carousel.min.css');
+//		wp_enqueue_style('Scuola-carousel-theme', get_stylesheet_directory_uri() . '/owlcarousel/assets/owl.theme.default.min.css');	
+//		wp_enqueue_script('ScuolaCarousel', get_template_directory_uri().'-child/js/owlcarousel.js', array('jquery'),null,true );
 	}
 }
 if ( !class_exists( 'SimplePie' ) ) {
@@ -111,13 +113,15 @@ add_action( 'widgets_init', 'Scuola_Register_Widget' );
 function Scuola_Register_Widget(){
 	register_widget( 'Articoli' );
 	register_widget( 'Articoli_Griglia' );
-//	register_widget( 'Comunicazioni' );
 //	register_widget( 'Blocchi' );
 	register_widget( 'Trasparenza' );
 //	register_widget( 'GalleriaLinks' );
 	register_widget( 'Feed_RSS' );
 	if(class_exists("EM_Event")){
 		register_widget( 'my_EM_Widget_Calendar' );
+	}
+	if(get_theme_mod('scuola_servizi_attiva')){
+		register_widget( 'Servizi' );
 	}
 }
 /**
@@ -128,6 +132,9 @@ require get_template_directory() . '-child/widget/widget_feedRSS.php';
 require get_template_directory() . '-child/widget/widget_trasparenza.php';
 require get_template_directory() . '-child/widget/widget_articoli.php';
 require get_template_directory() . '-child/widget/widget_articoli_griglia.php';
+if(get_theme_mod('scuola_servizi_attiva')){
+	require get_template_directory() . '-child/widget/widget_servizi.php';
+}
 /**
 * Inclusione Moduli del tema
 */
@@ -135,8 +142,10 @@ if(get_theme_mod('scuola_faq_attiva')){
 	require get_template_directory() . '-child/plugins/faq/scuola_faq.php';
 	$my_faq=new ScuolaFAQ();
 }
+if(get_theme_mod('scuola_servizi_attiva')){
 	require get_template_directory() . '-child/plugins/servizi/scuola_servizi.php';
 	$my_servizi=new ScuolaServizi();
+}
 /**
 * Inclusione libreria per la personalizzazione delle impostazioni del tema
 */
@@ -183,4 +192,39 @@ if (function_exists("at_sezioni_shtc")){
 	    $atshortcode = ob_get_clean();
 	    return $atshortcode;
 	} add_shortcode('at-search', 'my_at_search_shtc');	
+}
+function get_MenuSocial($ulID="menu-social",$ulClass="nav",$liClass="menu-item"){?>
+	<ul id="<?php echo $ulID;?>" class="<?php echo $ulClass;?>">
+	<?php if (get_theme_mod('scuola_social_facebook')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_facebook');?>" target="_blank"><i class="fab fa-facebook-f"></i> <span class="sr-only"> link al canale Facebook</span></a>
+		</li>
+	<?php }
+		if (get_theme_mod('scuola_social_twitter')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_twitter');?>" target="_blank"><i class="fab fa-twitter"></i> <span class="sr-only"> link al canale Twitter</span></a>
+		</li>
+	<?php }		
+		if (get_theme_mod('scuola_social_youtube')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_youtube');?>" target="_blank"><i class="fab fa-youtube"></i> <span class="sr-only"> link al canale YouTube</span></a>
+		</li>
+	<?php }		
+		if (get_theme_mod('scuola_social_instagram')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_instagram');?>" target="_blank"><i class="fab fa-instagram"></i> <span class="sr-only"> link al canale Instagram</span></a>
+		</li>
+	<?php }		
+		if (get_theme_mod('scuola_social_telegram')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_telegram');?>" target="_blank"><i class="fab fa-telegram-plane"></i> <span class="sr-only"> link al canale Telegram</span></a>
+		</li>
+	<?php }		
+		if (get_theme_mod('scuola_social_linkedin')){?>
+		<li class="<?php echo $liClass;?>">
+			<a href="<?php echo get_theme_mod('scuola_social_linkedin');?>" target="_blank"><i class="fab fa-linkedin-in"></i> <span class="sr-only"> link al canale LinkedIn</span></a>
+		</li>
+	<?php }?>
+	</ul>
+<?php
 }

@@ -70,7 +70,13 @@ class my_EM_Widget_Calendar extends WP_Widget {
 		}?>
 			<div class="shadow"> 
 <?php	    //Our Widget Content  
-	    echo EM_Calendar::output(apply_filters('em_widget_calendar_get_args',$instance));?>
+//var_dump($instance);wp_die();
+		$CalInstance=array( "title"			=>  $instance["title"],			
+							"long_events" 	=>	$instance["long_events"],
+							"category" 		=>	$instance["category"],
+							"month" 		=>	$instance["month"],
+							"year" 			=>	$instance["year"]);
+	    echo EM_Calendar::output(apply_filters('em_widget_calendar_get_args',$CalInstance));?>
 			</div>
 		</div>
 		<div class="col-lg-8 col-12">
@@ -162,7 +168,7 @@ class my_EM_Widget_Calendar extends WP_Widget {
   </div>
 <?php echo $args['after_widget'];?>
 </section>	
-<?php	
+<?php
     }
 /** @see WP_Widget::update */
 	function update($new_instance, $old_instance){

@@ -74,7 +74,7 @@ class ScuolaServizi {
 			</tr>
 			<tr>
 				<th>
-					<label for="servizio_link_servizio" class=""> <?php _e( 'URL di eroragione del Servizio', 'wpscuola' );?> </label>
+					<label for="servizio_link_servizio" class=""> <?php _e( 'URL di erogazione del Servizio', 'wpscuola' );?> </label>
 				</th>
 				<td>
 					<input type="text" id="servizio_link_servizio" name="servizio_link_servizio" class="" placeholder="<?php esc_attr_e( 'https://', 'wpscuola' );?>" value="<?php esc_attr_e( $servizio_link_servizio );?>" style="width:90%;">

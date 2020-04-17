@@ -74,6 +74,138 @@ $wp_customize->add_control('scuola_mappa_frame', array(
     'settings' => 'scuola_mappa_frame',
     'priority'	=> 4));  
 /**
+*  Sotto Pannello Cookies
+*/
+$wp_customize->add_section('Scuola_Cookies_Settings',array(
+    'title'			 =>'Impostazione Cookies',
+    'priority'		 =>4,
+    'description'	 => 'Personalizzazione del Banner di gestione dei Cookies',
+    'panel'			 =>'scuola_settings'));   
+$wp_customize->add_setting('scuola_cookies_attiva', array(
+    'default' => false, 
+    'capability' => 'edit_theme_options', 
+    'sanitize_callback' => 'DesignItalia_child_sanitize_checkbox'));
+$wp_customize->add_control('scuola_cookies_attiva', array(
+    'label' => 'attiva la gestione dell\'informativa sui Cookies',
+    'priority'	=> 1,
+    'type' => 'checkbox', 
+    'section' => 'Scuola_Cookies_Settings', 
+    'settings' => 'scuola_cookies_attiva'));
+$wp_customize->add_setting('scuola_cookies_testoMSG', array(
+    'default' => "", 
+    'capability' => 'edit_theme_options'));
+$wp_customize->add_control('scuola_cookies_testoMSG', array(
+    'type' => 'textarea', 
+    'label' => 'Testo messaggio',
+    'priority'	=> 2,
+    'description' => 'testo alternativo a quello standard <br /><strong>Questo sito utilizza cookie tecnici, analytics e di terze parti.
+Proseguendo nella navigazione accetti l’utilizzo dei cookie.</strong><br />Si possono utilizzare tag HTML come &lt;em&gt; &lt;strong&gt; &lt;br /&gt;',
+    'section' => 'Scuola_Cookies_Settings', 
+    'settings' => 'scuola_cookies_testoMSG',));
+// Pulsante di sinistra
+$wp_customize->add_setting( 'scuola_cookies_pulsSXText' , array(
+    'default'	 => 'Privacy Policy',
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_cookies_pulsSXText', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Testo link sinistra:',
+    'section' 	=> 'Scuola_Cookies_Settings',
+    'settings' => 'scuola_cookies_pulsSXText',
+    'priority'	=> 3));
+$wp_customize->add_setting( 'scuola_cookies_pulsSXlink' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_cookies_pulsSXlink', array(
+    'type' 		=> 'select',
+    'label' 	=> 'Seleziona la pagina della Privacy policy',
+    'section' 	=> 'Scuola_Cookies_Settings',
+    'settings' => 'scuola_cookies_pulsSXlink',
+    'priority'	=> 4,
+    'choices'   => $pagine));	   
+// Pulsante di Accetta
+    $wp_customize->add_setting( 'scuola_cookies_accettaText' , array(
+        'default'	=> 'Accetto',
+		'capability' => 'edit_theme_options') );
+	$wp_customize->add_control( 'scuola_cookies_accettaText', array(
+        'type' 		=> 'text',
+        'label' 	=> 'Testo link Accetta:',
+        'section' 	=> 'Scuola_Cookies_Settings',
+        'settings' => 'scuola_cookies_accettaText',
+        'priority'	=> 5)); 
+/**
+*  Sotto Pannello Social
+*/
+$wp_customize->add_section('Scuola_Social_Settings',array(
+    'title'			 =>'Impostazione Social',
+    'priority'		 =>5,
+    'description'	 => 'Sezione che permette di impostrare i canali social della scuola',
+    'panel'			 =>'scuola_settings'));   
+// Campo Facebook
+$wp_customize->add_setting( 'scuola_social_facebook' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_facebook', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Facebook:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_facebook',
+    'priority'	=> 1));
+// Campo Twitter
+$wp_customize->add_setting( 'scuola_social_twitter' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_twitter', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Twitter:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_twitter',
+    'priority'	=> 2));
+// Campo YouTube
+$wp_customize->add_setting( 'scuola_social_youtube' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_youtube', array(
+    'type' 		=> 'text',
+    'label' 	=> 'YouTube:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_youtube',
+    'priority'	=> 3));
+// Campo Instagram
+$wp_customize->add_setting( 'scuola_social_instagram' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_instagram', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Instagram:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_instagram',
+    'priority'	=> 4));        
+// Campo Telegram
+$wp_customize->add_setting( 'scuola_social_telegram' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_telegram', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Telegram:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_telegram',
+    'priority'	=> 5));                
+// Campo LinkedIn
+$wp_customize->add_setting( 'scuola_social_linkedin' , array(
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_linkedin', array(
+    'type' 		=> 'text',
+    'label' 	=> 'LinkedIn:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_linkedin',
+    'priority'	=> 6));         
+// Campo Titolo Sezione Footer
+$wp_customize->add_setting( 'scuola_social_footersectionTesto' , array(
+	'default'	=> '<i class="fas fa-hashtag"></i> Seguici su',
+	'capability' => 'edit_theme_options') );
+$wp_customize->add_control( 'scuola_social_footersectionTesto', array(
+    'type' 		=> 'text',
+    'label' 	=> 'Titolo della sezione Footer:',
+    'section' 	=> 'Scuola_Social_Settings',
+    'settings' => 'scuola_social_footersectionTesto',
+    'priority'	=> 7));         
+        
+                  
+/**
 *  Sotto Pannello Dati Amministrazione
 */
 $wp_customize->add_section('Scuola_Amministrazione_Settings',array(
@@ -283,6 +415,17 @@ $wp_customize->add_control('scuola_faq_attiva', array(
     'type' => 'checkbox', 
     'section' => 'Scuola_Moduli_Settings', 
     'settings' => 'scuola_faq_attiva'));
+$wp_customize->add_setting('scuola_servizi_attiva', array(
+    'default' => false, 
+    'capability' => 'edit_theme_options', 
+    'sanitize_callback' => 'DesignItalia_child_sanitize_checkbox'));
+$wp_customize->add_control('scuola_servizi_attiva', array(
+    'label' => 'Attiva il modulo Servizi',
+    'description'	=>' Il modulo prevede un Custom Post Type <em><strong>servizio</strong></em> ed un widget che permette di interfacciare i servizi',
+    'priority'	=> 2,
+    'type' => 'checkbox', 
+    'section' => 'Scuola_Moduli_Settings', 
+    'settings' => 'scuola_servizi_attiva'));
 /**
 *  Crea pannello per impostazione Home Page
 */
@@ -436,6 +579,17 @@ $wp_customize->add_control( 'Scuola_Hero_LeggiTutto', array(
     'section' 	=> 'scuola_hero_settings',
     'settings' => 'Scuola_Hero_LeggiTutto',
     'priority'	=> 3));
+$wp_customize->add_setting('Scuola_Hero_Overlay', array(
+    'default' => false, 'capability' => 'edit_theme_options'));
+$wp_customize->add_control('Scuola_Hero_Overlay', array(
+    'label' => 'Attiva Blocco',
+    'type' => 'select', 
+    'section' => 'scuola_hero_settings', 
+    'settings' => 'Scuola_Hero_Overlay',
+    'priority'	=> 4,
+    'choices'   => array(""				=> "Senza overlay",
+    					 "it-dark"		=> "Overlay scuro",
+    					 "it-primary"	=> "Overlay primario")));
 /**
 *  Sotto Pannello In Evedidenza
 */

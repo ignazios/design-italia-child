@@ -11,6 +11,10 @@ facebook: https://www.facebook.com/wpscuola/
 ## Siti di riferimento
 demo del tema: http://isitalia.eduva.org/
 ## Change log
+- **0.0.3**
+  - ***Aggiornamento*** widget Servizi
+  - ***Messa a punto*** elementi per l'accessibilità
+  - ***Sistemazione*** template home_page
 - **0.0.2**
   - ***Aggiornamento*** widget
 - **0.0.1**
