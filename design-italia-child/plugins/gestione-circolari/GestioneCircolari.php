@@ -24,6 +24,14 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
   die('You are not allowed to call this page directly.'); 
 }
 
+if((get_option('Circolari_ModuloCircolari')!= 'Si'||!get_option('Circolari_ModuloCircolari')) And get_theme_mod("scuola_circolari_attiva")){
+	circolari_activate();
+	update_option('Circolari_ModuloCircolari', 'Si');
+}
+if(get_option('Circolari_ModuloCircolari')== 'Si' And !get_theme_mod("scuola_circolari_attiva")){
+	circolari_uninstall();
+	update_option('Circolari_ModuloCircolari', 'No');
+}
 define("Circolari_URL",get_template_directory_uri()."-child/plugins/gestione-circolari");
 define("Circolari_DIR",dirname (__FILE__));
 define("Circolari_Dir_Servizio",WP_CONTENT_DIR."/Circolari");
