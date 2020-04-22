@@ -73,15 +73,14 @@ $Id
                            </div>
                          </a>
                        </div>
-                       <div class="it-right-zone">
+                       <div class="it-right-zone d-none d-md-flex">
                          <div class="it-socials d-none d-md-flex ml-0">
                            <?php //wp_nav_menu( array( 'theme_location' => 'menu-social', 'container' => 'ul', 'menu_class' => 'nav')); 
                            		get_MenuSocial("menu-social","nav","menu-item")?>
                          </div>
                          <div class="it-search-wrapper ml-0">
-			           <?php $IDForm="mysearchform";
-			                  $IDButton="mysearchsubmit";
-			                  get_search_form(); ?>
+			           <?php 
+			                get_search_form(); ?>
                          </div>
                        </div>
                      </div>

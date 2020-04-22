@@ -426,6 +426,17 @@ $wp_customize->add_control('scuola_servizi_attiva', array(
     'type' => 'checkbox', 
     'section' => 'Scuola_Moduli_Settings', 
     'settings' => 'scuola_servizi_attiva'));
+$wp_customize->add_setting('scuola_circolari_attiva', array(
+    'default' => false, 
+    'capability' => 'edit_theme_options', 
+    'sanitize_callback' => 'DesignItalia_child_sanitize_checkbox'));
+$wp_customize->add_control('scuola_circolari_attiva', array(
+    'label' => 'Attiva il modulo Circolari',
+    'description'	=>' Il modulo permette di integrare la gestione delle Circolari Scolastiche' ,
+    'priority'	=> 2,
+    'type' => 'checkbox', 
+    'section' => 'Scuola_Moduli_Settings', 
+    'settings' => 'scuola_circolari_attiva'));
 /**
 *  Crea pannello per impostazione Home Page
 */

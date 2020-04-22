@@ -84,7 +84,7 @@ function get_FiltriParametri($Stato=1,$cat=0,$StatoFinestra="si"){
 	return $HTML;
 }
 
-function get_FiltriCategorie(){
+function get_FiltriCategorie($Stato=1){
 	$lista=ap_get_categorie_gerarchica();
 	$HTMLL='<div class="ricercaCategoria">
 		<ul class="link-sublist" id="ListaCategorieAlbo">';

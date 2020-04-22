@@ -66,7 +66,7 @@
 		<div class="row">
 			<div class="col-lg-6 col-12 pl-2">
 			 <div class="shadow">
-				<h3 class="bg-primary p-3 text-white"><?php echo $TitoloPB;?></h3>	  
+				<h3 class="my-bg-primary p-3 text-white"><?php echo $TitoloPB;?></h3>	  
 				<div class="it-list-wrapper">
 					<ul class="it-list">
 <?php	foreach($ArticoliPB as $Articolo){	?>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="col-lg-6 col-12 pl-2">
 			 <div class="shadow">
-				<h3 class="bg-primary p-3 text-white"><?php echo $TitoloSB;?></h3>	  
+				<h3 class="my-bg-primary p-3 text-white"><?php echo $TitoloSB;?></h3>	  
 				<div class="it-list-wrapper">
 					<ul class="it-list">
 <?php	foreach($ArticoliSB as $Articolo){	?>

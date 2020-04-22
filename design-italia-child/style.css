@@ -5,7 +5,7 @@ Template: design-italia
 Author: Scimone Ignazio
 Author URI: https://eduva.org/
 Description: Design Italia è un tema di WordPress utilizzabile per i siti internet della Pubblica Amministrazione italiana.
-Version: 0.0.3
+Version: 0.0.4
 License: AGPL-3.0
 License URI: LICENSE
 Tags: one-column, two-columns, right-sidebar, custom-header, custom-colors, custom-logo, custom-menu, footer-widgets, editor-style, featured-images, post-formats, theme-options
@@ -141,12 +141,13 @@ Text Domain: wppa
 	height: 6rem;
 	overflow: hidden;
 }
-.card .it-card-footer {
+/*.card .it-card-footer {
    justify-content: flex-end!important;
    margin-top: 5px!important;
    margin-bottom:5px!important;
    padding-top: 5px;
 }
+*/
 .BloccoScuola{
 	height: 31em;
 	overflow: hidden;
@@ -432,6 +433,10 @@ article .attachments h3{
 .metarticoli a{
 	font-size: 0.8em!important;
 }
+.metarticoli {
+	line-height: 1em;
+	
+}
 #my_nav_Calendar li a {
 	font-size:1.2em;
 }
@@ -468,4 +473,31 @@ article .attachments h3{
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     border-bottom-color: #06c!important;
+}
+#content .link-list li.testoElenco a{
+	line-height: 1em;
+	border-bottom: #ddd 1px solid !important;
+	margin-bottom: 1em;
+	padding-bottom: 0.5em;
+}
+.card .head-tags .users {
+    font-size: .77778rem;
+    color: #435a70;
+}
+.card .it-card-footer .card-firma {
+    color: #06c;
+    font-size: .77778rem;
+    font-weight: 700;
+    padding: 0 .2rem;;
+    border-radius: 50px;
+    border: 1px solid #06c;
+    text-align: center;
+    margin-left: 0.2rem;
+}
+.card .it-card-footer .card-autore {
+    font-weight: 700;
+    color: #435a70;
+    font-size: .77778rem;
+    display: block;
+    margin-bottom: 0;
 }

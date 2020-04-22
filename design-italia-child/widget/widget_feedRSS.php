@@ -80,7 +80,7 @@ class Feed_RSS extends WP_Widget {
 			<div class="col-lg-4 col-12 pl-2">
 				<div class="shadow">
 <?php if ( !empty( $urlSx )){?>
-					<h3 class="bg-primary p-3 text-white"><?php echo $titoloSx; ?></h3>	  
+					<h3 class="my-bg-primary p-3 text-white"><?php echo $titoloSx; ?></h3>	  
 		<?php $this->crea_VociFeed($urlSx,$numele,$viscont,$visaut,$visdata);?>
 				</div>
 			</div>
@@ -88,7 +88,7 @@ class Feed_RSS extends WP_Widget {
 			<div class="col-lg-4 col-12 pl-2">
 				<div class="shadow">
 <?php if ( !empty( $titoloCx )){?>
-					<h3 class="bg-primary p-3 text-white"><?php echo $titoloCx; ?></h3>	  
+					<h3 class="my-bg-primary p-3 text-white"><?php echo $titoloCx; ?></h3>	  
 		<?php $this->crea_VociFeed($urlCx,$numele,$viscont,$visaut,$visdata);?>
 				</div>
 			</div>
@@ -96,7 +96,7 @@ class Feed_RSS extends WP_Widget {
 			<div class="col-lg-4 col-12 pl-2">
 				<div class="shadow">
 <?php if ( !empty( $titoloDx )){?>
-					<h3 class="bg-primary p-3 text-white"><?php echo $titoloDx; ?></h3>	  
+					<h3 class="my-bg-primary p-3 text-white"><?php echo $titoloDx; ?></h3>	  
 		<?php $this->crea_VociFeed($urlDx,$numele,$viscont,$visaut,$visdata);?>
 				</div>
 			</div>

@@ -8,9 +8,68 @@
  */
 
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
+ob_start();
 
+if(isset($_REQUEST['id']) And !is_numeric($_REQUEST['id'])){
+	$_REQUEST['id']=0;
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>ID</span>";
+	return;
+}
+if(isset($_REQUEST['action']) And $_REQUEST['action']!=wp_strip_all_tags($_REQUEST['action'])){
+	unset($_REQUEST['action']);
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Action</span>";
+	return;
+}
+if(isset($_REQUEST['categoria']) And !is_numeric($_REQUEST['categoria'])){
+	$_REQUEST['categoria']=0;
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Categoria</span>";
+}
+if(isset($_REQUEST['numero']) And $_REQUEST['numero']!="" AND !is_numeric($_REQUEST['numero'])){
+	$_REQUEST['numero']="";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Numero</span>";
+}
+if(isset($_REQUEST['anno']) And !is_numeric($_REQUEST['anno'])){
+	$_REQUEST['anno']=0;
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Anno</span>";
+}
+if(isset($_REQUEST['ente']) And !is_numeric($_REQUEST['ente'])){
+	$_REQUEST['ente']="-1";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Ente</span>";
+}
+if(isset($_REQUEST['Pag']) And !is_numeric($_REQUEST['Pag'])){
+	$_REQUEST['Pag']=1;
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Pag</span>";
+}
+if(isset($_REQUEST['oggetto']) And $_REQUEST['oggetto']!=wp_strip_all_tags($_REQUEST['oggetto'])){
+	$_REQUEST['oggetto']="";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Oggetto</span>";
+}
+if(isset($_REQUEST['riferimento']) And $_REQUEST['riferimento']!=wp_strip_all_tags($_REQUEST['riferimento'])){
+	$_REQUEST['riferimento']="";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Riferimento</span>";
+}
+if(isset($_REQUEST['DataInizio']) And $_REQUEST['DataInizio']!=wp_strip_all_tags($_REQUEST['DataInizio'])){
+	$_REQUEST['DataInizio']="";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>Da Data</span>";
+}
+if(isset($_REQUEST['DataFine']) And $_REQUEST['DataFine']!=wp_strip_all_tags($_REQUEST['DataFine'])){
+	$_REQUEST['DataFine']="";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>A Data</span>";
+}
+if(isset($_REQUEST['filtra']) And $_REQUEST['filtra']!="Filtra"){
+	$_REQUEST['filtra']="Filtra";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>filtra</span>";
+}
+if(isset($_REQUEST['vf']) And ($_REQUEST['vf']!="s" And $_REQUEST['vf']!="h" And $_REQUEST['vf']!="undefined")){
+	$_REQUEST['vf']="undefined";
+	echo "<br /><span style='color:red;'>ATTENZIONE:</span> E' stato indicato un VALORE non valido per il parametro <span style='color:red;'>vf</span>";
+}
+foreach($_REQUEST as $Key => $Val){
+	$_REQUEST[$Key]=htmlspecialchars(wp_strip_all_tags($_REQUEST[$Key]));
+}
 
 include_once(dirname (__FILE__) .'/frontend_filtro.php');
+
 if(isset($_REQUEST['action'])){
 	switch ($_REQUEST['action']){
         case 'printatto':
@@ -20,24 +79,39 @@ if(isset($_REQUEST['action'])){
                 } elseif ($_REQUEST['pdf'] == 'a') {
                     StampaAtto($_REQUEST['id'], 'a');
                 }
-            }
+            }else{
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido che può rappresentare un ATTACCO INFORMATICO AL SITO";
+			}
             break;
 		case 'visatto':
 			if(is_numeric($_REQUEST['id']))
-				VisualizzaAtto($_REQUEST['id']);
+				$ret=VisualizzaAtto($_REQUEST['id']);
 			else{
-				$ret=Lista_Atti($Parametri);
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido che può rappresentare un ATTACCO INFORMATICO AL SITO";
 			}
-				
 			break;
 		case 'addstatall':
 			if(is_numeric($_GET['id']) and is_numeric($_GET['idAtto']))
-				ap_insert_log(6,5,(int)$_GET['id'],"Download",(int)$_GET['idAtto']);
+				ap_insert_log(5,5,(int)$_GET['id'],"Visualizzazione",(int)$_GET['idAtto']);
 			break;
 		default: 
 			if (isset($_REQUEST['filtra'])){
-						
-			 		$ret=Lista_Atti($Parametri,$_REQUEST['categoria'],(int)$_REQUEST['numero'],(int)$_REQUEST['anno'], htmlentities($_REQUEST['oggetto']),htmlentities($_REQUEST['DataInizio']),htmlentities($_REQUEST['DataFine']), htmlentities($_REQUEST['riferimento']),$_REQUEST['ente']);
+				if(!is_numeric($_REQUEST['categoria']) OR
+				   !is_numeric($_REQUEST['numero']) OR
+				   !is_numeric($_REQUEST['anno']) OR
+				   !is_numeric($_REQUEST['ente'])){
+						echo "ATTENZIONE:<br />E' stato indicato un parametro non valido che può rappresentare un ATTACCO INFORMATICO AL SITO";
+						break;
+				}
+			if($_REQUEST['oggetto']!=wp_strip_all_tags($_REQUEST['oggetto'])){
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido nel campo Oggetto che può rappresentare un ATTACCO INFORMATICO AL SITO";
+				break;
+			}
+			if($_REQUEST['riferimento']!=wp_strip_all_tags($_REQUEST['riferimento'])){
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido nel campo Riferimento che può rappresentare un ATTACCO INFORMATICO AL SITO";
+				break;
+			}
+	 		$ret=Lista_Atti($Parametri,$_REQUEST['categoria'],(int)$_REQUEST['numero'],(int)$_REQUEST['anno'], htmlentities($_REQUEST['oggetto']),htmlentities($_REQUEST['DataInizio']),htmlentities($_REQUEST['DataFine']), htmlentities($_REQUEST['riferimento']),$_REQUEST['ente']);
 			}else if(isset($_REQUEST['annullafiltro'])){
 					 unset($_REQUEST['categoria']);
 					 unset($_REQUEST['numero']);
@@ -54,30 +128,43 @@ if(isset($_REQUEST['action'])){
 		}	
 	}else{
 		if (isset($_REQUEST['filtra'])){
-	 		$ret=Lista_Atti($Parametri,$_REQUEST['categoria'],(int)$_REQUEST['numero'],(int)$_REQUEST['anno'], htmlentities($_REQUEST['oggetto']),htmlentities($_REQUEST['DataInizio']),htmlentities($_REQUEST['DataFine']), htmlentities($_REQUEST['riferimento']),$_REQUEST['ente']);			
-		}else if(isset($_REQUEST['annullafiltro'])){
-		 unset($_REQUEST['categoria']);
-		 unset($_REQUEST['numero']);
-		 unset($_REQUEST['anno']);
-		 unset($_REQUEST['oggetto']);
-		 unset($_REQUEST['riferimento']);
-		 unset($_REQUEST['DataInizio']);
-		 unset($_REQUEST['ente']);
-		 $ret=Lista_Atti($Parametri);
-	}else{
-		$ret=Lista_Atti($Parametri);
+			if((isset($_REQUEST['categoria']) And !is_numeric($_REQUEST['categoria'])) OR
+			   (isset($_REQUEST['numero']) And $_REQUEST['numero']!="" AND !is_numeric($_REQUEST['numero'])) OR
+			   (isset($_REQUEST['anno']) And !is_numeric($_REQUEST['anno'])) OR
+			   (isset($_REQUEST['ente']) And !is_numeric($_REQUEST['ente']))){
+					echo "ATTENZIONE:<br />E' stato indicato un parametro non valido che può rappresentare un ATTACCO INFORMATICO AL SITO";
+					return;
+			}
+			if($_REQUEST['oggetto']!=wp_strip_all_tags($_REQUEST['oggetto'])){
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido nel campo Oggetto che può rappresentare un ATTACCO INFORMATICO AL SITO";
+				return;
+			}
+			if($_REQUEST['riferimento']!=wp_strip_all_tags($_REQUEST['riferimento'])){
+				echo "ATTENZIONE:<br />E' stato indicato un parametro non valido nel campo Riferimento che può rappresentare un ATTACCO INFORMATICO AL SITO";
+				return;
+			}
+			$ret=Lista_Atti($Parametri,(int)$_REQUEST['categoria'],(int)$_REQUEST['numero'],(int)$_REQUEST['anno'], htmlentities($_REQUEST['oggetto']),htmlentities($_REQUEST['DataInizio']),htmlentities($_REQUEST['DataFine']), htmlentities($_REQUEST['riferimento']),(int)$_REQUEST['ente']);			
+		}else 
+			if(isset($_REQUEST['annullafiltro'])){
+				 unset($_REQUEST['categoria']);
+				 unset($_REQUEST['numero']);
+				 unset($_REQUEST['anno']);
+				 unset($_REQUEST['oggetto']);
+				 unset($_REQUEST['riferimento']);
+				 unset($_REQUEST['DataInizio']);
+				 unset($_REQUEST['ente']);
+				 $ret=Lista_Atti($Parametri);
+			}else{
+				$ret=Lista_Atti($Parametri);
 
+			}
 	}
-}
-
 function VisualizzaAtto($id){
 	$risultato=ap_get_atto($id);
 	$risultato=$risultato[0];
 	$risultatocategoria=ap_get_categoria($risultato->IdCategoria);
 	$risultatocategoria=$risultatocategoria[0];
 	$allegati=ap_get_all_allegati_atto($id);
-	$responsabile=ap_get_responsabile($risultato->RespProc);
-	$responsabile=$responsabile[0];
 	ap_insert_log(5,5,$id,"Visualizzazione");
 	$coloreAnnullati=get_option('opt_AP_ColoreAnnullati');
 	if($risultato->DataAnnullamento!='0000-00-00')
@@ -138,7 +225,6 @@ if($MetaDati!==FALSE){
 		$Meta.="{".$Metadato->Meta."=".$Metadato->Value."} - ";
 	}
 	$Meta=substr($Meta,0,-3);?>
-					<h2 class="u-text-h2 pt-3 pl-2"><?php echo $Titolo;?></h2>
 					<tr>
 						<th>Meta Dati</th>
 						<td style="vertical-align: middle;"><?php echo $Meta;?></td>
@@ -414,8 +500,6 @@ echo '	</tr>
 			$Link='<a href="'.get_permalink().$sep.'action=visatto&amp;id='.$riga->IdAtto.'"  style="text-decoration: underline;">';
 			$categoria=ap_get_categoria($riga->IdCategoria);
 			$cat=$categoria[0]->Nome;
-			$responsabileprocedura=ap_get_responsabile($riga->RespProc);
-			$respproc=$responsabileprocedura[0]->Cognome." ".$responsabileprocedura[0]->Nome;
 			$NumeroAtto=ap_get_num_anno($riga->IdAtto);
 	//		Bonifica_Url();
 			$ParCella='';
@@ -461,11 +545,17 @@ echo '	</tr>
 					<td '.$ParCella.'>
 						'.stripslashes($riga->Informazioni) .'
 					</td>';
-			if ($FEColsOption['RespProc']==1)
-				echo '
+			if ($FEColsOption['RespProc']==1){
+				$responsabileprocedura=ap_get_responsabile($riga->RespProc);
+				if(count($responsabileprocedura)>0){
+					$respproc=$responsabileprocedura[0]->Cognome." ".$responsabileprocedura[0]->Nome;
+					echo '
 					<td '.$ParCella.'>
 						'.$respproc .'
-					</td>';	
+					</td>';				
+				}
+			}
+
 			if ($FEColsOption['DataOblio']==1)
 				echo '
 					<td '.$ParCella.'>

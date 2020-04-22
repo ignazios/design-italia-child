@@ -43,22 +43,22 @@ class Trasparenza extends WP_Widget {
                 echo $args['before_title'] . $title . $args['after_title'];
             } ?>   
   <div class="row d-flex justify-content-center" >
-    <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 bg-primary rounded text-center">
+    <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 btn-primary rounded text-center">
     	<a href="<?php echo $LAT;?>" class="lead testo-bianco">Amministrazione Trasparente</a>
     </div>
     <div class="col-lg-3 col-sm-6 col-12 m-2">
     	  <div class="row mb-2 h-48">
-		    <div class="col p-2 bg-primary rounded text-center">
+		    <div class="col p-2 btn-primary rounded text-center">
 				<a href="<?php echo $URP; ?>" class="lead testo-bianco" >URP</a>
 			</div>
 		  </div>
 		  <div class="row h-48 pb-1">
-		    <div class="col p-2 bg-primary rounded text-center">
+		    <div class="col p-2 btn-primary rounded text-center">
 		    	<a href="<?php echo $AC;?>" class="lead testo-bianco" >Accesso Civico</a>
 		    </div>
 		  </div> 	
     </div>
-    <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 bg-primary rounded text-center">
+    <div class="col-lg-4 col-sm-6 col-12 m-2 p-5 btn-primary rounded text-center">
 		<a href="<?php echo $AP; ?>" class="lead testo-bianco" >Albo OnLine</a>
     </div>
   </div>

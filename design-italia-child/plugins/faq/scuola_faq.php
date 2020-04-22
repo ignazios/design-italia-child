@@ -76,7 +76,7 @@ class ScuolaFAQ {
 		'show_in_rest' => true,
 		'supports'          	=> array( 'title', 'editor', 'revisions', 'page-attributes' ),
 	);
-	register_post_type( 'faq', $atts );
+	register_post_type( 'tipo_faq', $atts );
 
 	$labels = array(
 		'name'                       => _x( 'Gruppi di FAQs', 'Taxonomy General Name', 'wpscuola' ),
@@ -110,7 +110,7 @@ class ScuolaFAQ {
 		'show_tagcloud'              => true,
 		'show_in_rest'               => true,
 	);
-	register_taxonomy( 'faq_gruppi', array( 'faq' ), $atts );
+	register_taxonomy( 'faq_gruppi', array( 'tipo_faq' ), $atts );
 }
 
     function messages( $messages ) {
@@ -138,7 +138,7 @@ class ScuolaFAQ {
     }
 
     function Colonne_FAQ_Intestazioni( $columns ) {
-		if (get_post_type()=="faq"){
+		if (get_post_type()=="tipo_faq"){
 	        $columns = array(
 	            "cb"          => '<input type="checkbox" />',
 	            "title"      => 'Titolo FAQ',
@@ -152,7 +152,7 @@ class ScuolaFAQ {
     }
     function Colonne_FAQ_Contenuti( $defaults ) {
         global $post;
-		if (get_post_type()=="faq"){
+		if (get_post_type()=="tipo_faq"){
 	        switch( $defaults ) {
 	            case "contenuto":
 	                the_excerpt();
@@ -200,7 +200,7 @@ class ScuolaFAQ {
             		'posts_per_page'    => -1,
             		'gruppi'           	=> ''),
 			$atts,
-			'faq'
+			'tipo_faq'
 		);
 
 	    $html = '<div id="collapseDivFAQ" class="collapse-div collapse-background-active" role="tablist">';
@@ -211,7 +211,7 @@ class ScuolaFAQ {
 	        foreach ( $terms as $term ) {
 	            if (in_array($term->slug, $gruppi) ){
 	                $query_args = array(
-	                    'post_type'         => 'faq',
+	                    'post_type'         => 'tipo_faq',
 	                    'order'             => $atts['order'],
 	                    'orderby'           => $atts['orderby'],
 	                    'posts_per_page'    => $atts['posts_per_page'],

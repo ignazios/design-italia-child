@@ -7,6 +7,7 @@
  * @package design-italia-child
  */
   /* UPDATER THEME VERSION */
+
 require 'inc/theme-update-checker.php';
 $update_checker = new ThemeUpdateChecker(
     'design-italia-child',
@@ -49,10 +50,16 @@ function desigitalia_child_Head(){
 	}
 	?>
 	<!-- Custom <head> content -->
-			    <style type="text/css">				
-					#content {background-color:#<?php echo get_theme_mod( 'background_color' ); ?>;}
-					<?php echo $Regole; ?>
-				</style>
+		<style type="text/css">				
+			#content {background-color:#<?php echo get_theme_mod( 'background_color' ); ?>;}
+			<?php echo $Regole; ?>
+    		.my-bg-primary { background-color: <?php echo get_theme_mod( 'wppa_head_color', "#0066cc" ); ?>; }
+    		@media (min-width:1200px) {
+		     .it-list-wrapper .it-list a:hover {
+		         color: <?php echo get_theme_mod( 'wppa_link_color', "#0066cc" ); ?>;
+		    }
+ }   
+	    </style>
 	<?php 	
 }
 
@@ -109,11 +116,11 @@ add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 * @return
 */
 require (get_template_directory() . '-child/widget/widget.php' ); 
+
 add_action( 'widgets_init', 'Scuola_Register_Widget' );
 function Scuola_Register_Widget(){
 	register_widget( 'Articoli' );
 	register_widget( 'Articoli_Griglia' );
-//	register_widget( 'Blocchi' );
 	register_widget( 'Trasparenza' );
 //	register_widget( 'GalleriaLinks' );
 	register_widget( 'Feed_RSS' );
@@ -122,6 +129,36 @@ function Scuola_Register_Widget(){
 	}
 	if(get_theme_mod('scuola_servizi_attiva')){
 		register_widget( 'Servizi' );
+	}
+	if(function_exists("at_sezioni_shtc")){
+		register_widget( 'my_ATWidget' );	
+	}
+	if(get_theme_mod("scuola_circolari_attiva")){
+		register_widget( 'CircolariScuola' );
+	}
+	if (function_exists('register_sidebar')) {
+		if(class_exists("EM_Event")){
+			register_sidebar(array(
+				'name' => __('Event Sidebar Widget Area', 'wppa') ,
+				'id' => 'event-widget-area',
+				'description'   => __( 'Widget area che compare nella sidebar degli eventi.', 'wppa' ),
+				'before_widget' => '<div id="%1$s" class="widget-container shadow p-2 %2$s">',
+				'after_widget' => "</div>",
+				'before_title' => '<h3 class="widget-title">',
+				'after_title' => '</h3>',
+			));
+		}
+		if(function_exists("at_sezioni_shtc")){
+			register_sidebar(array(
+				'name' => __('Amministrazione Trasparente', 'wppa') ,
+				'id' => 'amm-trasparente-widget-area',
+				'description'   => __( 'Widget area visibile solo nelle pagine dell\'Amministrazione Trasparente.', 'wppa' ),
+				'before_widget' => '<div id="%1$s" class="widget-container shadow p-2 %2$s">',
+				'after_widget' => "</div>",
+				'before_title' => '<h3 class="widget-title">',
+				'after_title' => '</h3>',
+			));
+		}
 	}
 }
 /**
@@ -135,6 +172,13 @@ require get_template_directory() . '-child/widget/widget_articoli_griglia.php';
 if(get_theme_mod('scuola_servizi_attiva')){
 	require get_template_directory() . '-child/widget/widget_servizi.php';
 }
+if(function_exists("at_sezioni_shtc")){
+	require get_template_directory() . '-child/widget/widget_AT.php';
+}
+if(get_theme_mod("scuola_circolari_attiva")){
+	require get_template_directory() . '-child/widget/widget_circolari.php';
+}
+
 /**
 * Inclusione Moduli del tema
 */
@@ -146,6 +190,9 @@ if(get_theme_mod('scuola_servizi_attiva')){
 	require get_template_directory() . '-child/plugins/servizi/scuola_servizi.php';
 	$my_servizi=new ScuolaServizi();
 }
+if(get_theme_mod('scuola_circolari_attiva')){
+	require get_template_directory() . '-child/plugins/gestione-circolari/GestioneCircolari.php';
+}
 /**
 * Inclusione libreria per la personalizzazione delle impostazioni del tema
 */
@@ -155,19 +202,6 @@ require get_template_directory() . '-child/inc/customizer.php';
 */
 require get_template_directory() . '-child/inc/my_class-walker-category.php';
 
-if (function_exists('register_sidebar')) {
-	if(class_exists("EM_Event")){
-		register_sidebar(array(
-			'name' => __('Event Sidebar Widget Area', 'wppa') ,
-			'id' => 'event-widget-area',
-			'description'   => __( 'Widget area che compare nella sidebar degli eventi.', 'wppa' ),
-			'before_widget' => '<div id="%1$s" class="widget-container shadow p-2 %2$s">',
-			'after_widget' => "</div>",
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		));
-	}
-}
 function calc_NumArticoliMA($ArchivioDate){
 	$Dati=array();
 	foreach ($ArchivioDate as $Data) {

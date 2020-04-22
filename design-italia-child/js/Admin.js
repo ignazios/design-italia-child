@@ -1,7 +1,8 @@
 jQuery(document).ready(function($){
+
 	$( "#mod_data_scadenza" ).datepicker({dateFormat : 'dd/mm/yy'});
  	$( "#data_scadenza" ).datepicker({dateFormat : 'dd/mm/yy'});
-   $( "#sortable" ).disableSelection();
+   	$( "#sortable" ).disableSelection();
 	$("#sortable").sortable({ connectWith: '#ArticoliDisp',
 		update: function(event, ui) {
 				$('#loading-animation').show(); // Show the animate loading gif while waiting

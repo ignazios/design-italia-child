@@ -13,7 +13,7 @@
 								<i class="fas fa-user-edit pr-1 pl-1"></i> <a href="<?php echo esc_url(home_url('/'))."author/".get_the_author_meta('user_nicename');?>"><?php the_author_meta('display_name'); ?></a>
 					</div>	
 				</header>
-<?php if($post->post_excerpt!=""): ?>
+<?php if(get_the_excerpt()!=""): ?>
 				<section class="entry-summary">
 					<div class="callout mycallout">
   						<div class="callout-title">Riassunto</div>
@@ -37,10 +37,10 @@
 									</div> 
 									<ul class="link-list" id="ListaPagine">
 <?php
-		$servizio_link_servizio = get_post_meta( $post->ID, 'servizio_link_servizio', true );
-		$servizio_link_descrizione = get_post_meta( $post->ID, 'servizio_link_descrizione', true );
-		$servizio_attivazione_servizio = get_post_meta( $post->ID, 'servizio_attivazione_servizio', true );
-		$servizio_codice_ipa = get_post_meta( $post->ID, 'servizio_codice_ipa', true );
+		$servizio_link_servizio = get_post_meta( get_the_ID(), 'servizio_link_servizio', true );
+		$servizio_link_descrizione = get_post_meta( get_the_ID(), 'servizio_link_descrizione', true );
+		$servizio_attivazione_servizio = get_post_meta( get_the_ID(), 'servizio_attivazione_servizio', true );
+		$servizio_codice_ipa = get_post_meta( get_the_ID(), 'servizio_codice_ipa', true );
 
 		// Set default values.
 		if(!empty( $servizio_link_servizio)) echo '<li class="pb-2"><a href="'.$servizio_link_servizio.'" class="badge badge-primary" target="_blank">Erogazione</a></li>';
